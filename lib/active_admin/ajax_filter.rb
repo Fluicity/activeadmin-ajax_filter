@@ -33,7 +33,7 @@ module ActiveAdmin
               item_json = item.as_json
 
               related_table_search_fields.each do |related_table, search_field|
-                item_json[related_table + '.' + search_field] = item.send(related_table).send(search_field)
+                item_json[related_table + '.' + search_field] = item.public_send(related_table).try(search_field)
               end
 
               item_json
